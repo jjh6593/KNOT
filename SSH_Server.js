@@ -1,38 +1,62 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-var ssh = require('ssh2').Client;
+const express = require('express');
+const socketio = require('socket.io');
+const ssh2 = require('ssh2').Client;
+const cors = require('cors');
 
-server.listen(22);
-
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+const app = express();
+app.use(cors());
+const server = require('http').createServer(app);
+const io = socketio(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
 });
 
-io.on('connection', function (socket) {
-  var conn = new ssh();
-  conn.on('ready', function() {
-    socket.emit('data', '\r\n*** SSH CONNECTION ESTABLISHED ***\r\n');
-    conn.shell(function(err, stream) {
-      if (err) return socket.emit('data', '\r\n*** SSH SHELL ERROR: ' + err.message + ' ***\r\n');
-      socket.on('data', function(data) {
-        stream.write(data);
+app.use(express.static(__dirname + '/public'));
+app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist/')));
+
+io.on('connection', (socket) => {
+  let conn = new ssh2();
+  
+  socket.on('ssh-connect', (data) => {
+    conn.connect({
+      host: data.host,
+      port: data.port,
+      username: data.username,
+      password: data.password
+    });
+  });
+
+  conn.on('ready', () => {
+    socket.emit('ssh-ready');
+    
+    conn.shell((err, stream) => {
+      if (err) throw err;
+
+      socket.on('ssh-command', (command) => {
+        stream.write(command + '\n');
       });
-      stream.on('data', function(d) {
-        socket.emit('data', d.toString('binary'));
-      }).on('close', function() {
-        conn.end();
+
+      stream.on('data', (data) => {
+        socket.emit('ssh-data', data.toString());
       });
     });
-  }).on('close', function() {
-    socket.emit('data', '\r\n*** SSH CONNECTION CLOSED ***\r\n');
-  }).on('error', function(err) {
-    socket.emit('data', '\r\n*** SSH CONNECTION ERROR: ' + err.message + ' ***\r\n');
-  }).connect({
-    host: 'SSH_SERVER', // Replace with your SSH server IP
-    port: 22,
-    username: 'SSH_USERNAME', // Replace with your SSH username
-    password: 'SSH_PASSWORD' // Replace with your SSH password
+  });
+
+  conn.on('error', (error) => {
+    socket.emit('ssh-error', error);
+  });
+
+  conn.on('end', () => {
+    socket.emit('ssh-end');
+  });
+
+  socket.on('disconnect', () => {
+    conn.end();
   });
 });
 
+server.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});

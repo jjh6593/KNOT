@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SSH Web Console</title>
-    <style>
-      #console {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        border: none;
-        background-color: #000;
-        color: #fff;
-        white-space: pre;
-        overflow: scroll;
-      }
-    </style>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io.connect();
-      socket.on('data', function (data) {
-        document.getElementById('console').innerHTML += data.replace(/[\n\r]/g, '<br>');
-      });
-      function send() {
-        socket.emit('data', document.getElementById('input').value);
-        document.getElementById('input').value = '';
-      }
-    </script>
-  </head>
-  <body>
-    <pre id="console"></pre>
-    <input id="input" type="text" onkeydown="if(event.keyCode===13) send();" autofocus>
-  </body>
+<head>
+  <title>SSH Web Console</title>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+</head>
+<body>
+<h1>SSH Web Console</h1>
+
+<h2>Connection Info</h2>
+<label>Host: <input id="host" type="text"></label><br>
+<label>Port: <input id="port" type="text"></label><br>
+<label>Username: <input id="username" type="text"></label><br>
+<label>Password: <input id="password" type="password"></label><br>
+<button id="connect">Connect</button>
+
+<h2>Command</h2>
+<label for="console"></label><textarea id="console" readonly style="width: 500px; height: 300px;"></textarea><br>
+<label for="command"></label><input id="command" type="text" style="width: 500px;">
+<button id="send">Send</button>
+
+<script>
+  const socket = io.connect('http://localhost:3000');
+
+  document.getElementById('connect').onclick = () => {
+    const host = document.getElementById('host').value;
+    const port = document.getElementById('port').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    socket.emit('ssh-connect', { host, port, username, password });
+  };
+
+  document.getElementById('send').onclick = () => {
+    const command = document.getElementById('command').value;
+
+    socket.emit('ssh-command', command);
+    document.getElementById('command').value = '';
+  };
+
+  socket.on('ssh-ready', () => {
+    document.getElementById('console').value += 'SSH Connection Ready\n';
+  });
+
+  socket.on('ssh-data', (data) => {
+    document.getElementById('console').value += data;
+  });
+
+  socket.on('ssh-error', (error) => {
+    document.getElementById('console').value += 'Error: ' + error + '\n';
+  });
+
+  socket.on('ssh-end', () => {
+    document.getElementById('console').value += 'SSH Connection Closed\n';
+  });
+</script>
+</body>
 </html>
