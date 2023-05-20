@@ -2,6 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const ssh2 = require('ssh2').Client;
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
