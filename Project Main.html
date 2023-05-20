@@ -15,8 +15,11 @@
             .navbar {
                 min-height: 50px;
             }
+            body {
+                height: 100vh;
+            }
             #footer {
-                background-color: #5AC3D9;
+                background-color: #90CFD4;
                 color: white;
                 display: flex;
                 justify-content: center;
@@ -25,7 +28,32 @@
             }
             #web_console {
                 height: 100vh;
+                display: flex;
+                flex-direction: column;
                 align-items: center;
+                justify-content: flex-start;
+                background-color: #5AC3D9;
+                padding: 20px;
+            }
+            #ssh_info {
+                text-align: right;
+                margin-bottom: 20px;
+            }
+            #terminal {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            #terminal textarea {
+                resize: none;
+                background-color: #3B393C;
+                color: white;
+            }
+            #buttons {
+                display: flex;
+                align-items: center;
+            }
+            #buttons button {
+
             }
         </style>
     </head>
@@ -58,19 +86,60 @@
 
     </div>
     <div id="web_console">
-        <label>Host: <input id="host" type="text"></label><br>
-        <label>Port: <input id="port" type="text"></label><br>
-        <label>Username: <input id="username" type="text"></label><br>
-        <label>Password: <input id="password" type="password"></label><br>
-        <button id="connect">Connect</button>
+        <div id="ssh_info">
+            <label>Host: <input id="host" type="text"></label><br>
+            <label>Port: <input id="port" type="text"></label><br>
+            <label>Username: <input id="username" type="text"></label><br>
+            <label>Password: <input id="password" type="password"></label><br>
+            <button id="connect">Connect</button>
+        </div>
 
-        <h2>Command</h2>
-        <label for="console"></label><textarea id="console" readonly style="width: 500px; height: 300px;"></textarea><br>
-        <label for="command"></label><input id="command" type="text" style="width: 500px;">
-        <button id="send">Send</button>
+        <div id="terminal">
+            <h1>Terminal</h1>
+            <label for="console"></label><textarea id="console" readonly style="width: 1000px; height: 600px;"></textarea><br>
+            <label for="command"></label><input id="command" type="text" style="width: 1000px;" onkeydown="handleKeyPress(event)">
+            <button id="send">Send</button>
+        </div>
+
+        <div id="buttons" class="btn-group">
+            <button type="button" id="ls" class="btn btn-light">작업 디렉터리 파일 조회</button>
+            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+            <ul class="dropdown-menu">
+                <li><a id="lsp" class="dropdown-item" href="#">부모 디렉터리 파일 조회e</a></li>
+                <li><a id="lsr" class="dropdown-item" href="#">루트 디렉터리 파일 조회</a></li>
+                <li><a id="lsa" class="dropdown-item" href="#">자세한 작업 디렉터리 파일 조회</a></li>
+            </ul>
+            <button type="button" class="btn btn-light" style="margin-left: 10px">작업 디렉터리 파일 조회</button>
+            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">example</a></li>
+                <li><a class="dropdown-item" href="#">example</a></li>
+                <li><a class="dropdown-item" href="#">example</a></li>
+            </ul>
+            <button type="button" class="btn btn-light" style="margin-left: 10px">작업 디렉터리 파일 조회</button>
+            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">example</a></li>
+                <li><a class="dropdown-item" href="#">example</a></li>
+                <li><a class="dropdown-item" href="#">example</a></li>
+            </ul>
+        </div>
 
         <script>
             const socket = io.connect('http://localhost:3000');
+
+
+            function handleKeyPress(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault(); // 기본 Enter 키 동작 방지
+                    const command = document.getElementById('command').value;
+
+                    socket.emit('ssh-command', command);
+
+                    document.getElementById('command').value = '';
+                }
+            }
+
 
             document.getElementById('connect').onclick = () => {
                 const host = document.getElementById('host').value;
@@ -88,12 +157,28 @@
                 document.getElementById('command').value = '';
             };
 
+            document.getElementById('ls').onclick = () => {
+                socket.emit('ssh-command', "ls");
+            }
+
+            document.getElementById('lsp').onclick = () => {
+                socket.emit('ssh-command', "ls ../");
+            }
+            document.getElementById('lsr').onclick = () => {
+                socket.emit('ssh-command', "ls /");
+            }
+
+            document.getElementById('lsa').onclick = () => {
+                socket.emit('ssh-command', "ls -al");
+            }
+
             socket.on('ssh-ready', () => {
                 document.getElementById('console').value += 'SSH Connection Ready\n';
             });
 
             socket.on('ssh-data', (data) => {
                 document.getElementById('console').value += data;
+                document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
             });
 
             socket.on('ssh-error', (error) => {
@@ -129,7 +214,7 @@
 
         function show_console() {
             home.style.display = "none";
-            console.style.display = "block";
+            console.style.display = "flex";
             reference.style.display = "none";
             about.style.display = "none";
         }
