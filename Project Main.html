@@ -13,7 +13,7 @@
                 font-family: 'Nanum Gothic', sans-serif;
             }
             .navbar {
-                min-height: 50px;
+                min-height: 5vh;
             }
             body {
                 height: 100vh;
@@ -27,6 +27,7 @@
                 height: 10vh;
             }
             #web_console {
+                margin-top: 5vh;
                 height: 100vh;
                 display: flex;
                 flex-direction: column;
@@ -58,7 +59,7 @@
         </style>
     </head>
     <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">KNOT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -91,38 +92,49 @@
             <label>Port: <input id="port" type="text"></label><br>
             <label>Username: <input id="username" type="text"></label><br>
             <label>Password: <input id="password" type="password"></label><br>
-            <button id="connect">Connect</button>
+            <button id="connect" class="btn btn-dark">Connect</button>
         </div>
 
         <div id="terminal">
             <h1>Terminal</h1>
-            <label for="console"></label><textarea id="console" readonly style="width: 1000px; height: 600px;"></textarea><br>
-            <label for="command"></label><input id="command" type="text" style="width: 1000px;" onkeydown="handleKeyPress(event)">
+            <label for="console"></label><textarea id="console" readonly style="width: 50vw; height: 50vh;"></textarea><br>
+            <label for="command"></label><input id="command" type="text" style="width: 50vw;" onkeydown="handleKeyPress(event)">
             <button id="send">Send</button>
         </div>
 
-        <div id="buttons" class="btn-group">
-            <button type="button" id="ls" class="btn btn-light">작업 디렉터리 파일 조회</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
-            <ul class="dropdown-menu">
-                <li><a id="lsp" class="dropdown-item" href="#">부모 디렉터리 파일 조회e</a></li>
-                <li><a id="lsr" class="dropdown-item" href="#">루트 디렉터리 파일 조회</a></li>
-                <li><a id="lsa" class="dropdown-item" href="#">자세한 작업 디렉터리 파일 조회</a></li>
-            </ul>
-            <button type="button" class="btn btn-light" style="margin-left: 10px">작업 디렉터리 파일 조회</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">example</a></li>
-                <li><a class="dropdown-item" href="#">example</a></li>
-                <li><a class="dropdown-item" href="#">example</a></li>
-            </ul>
-            <button type="button" class="btn btn-light" style="margin-left: 10px">작업 디렉터리 파일 조회</button>
-            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">example</a></li>
-                <li><a class="dropdown-item" href="#">example</a></li>
-                <li><a class="dropdown-item" href="#">example</a></li>
-            </ul>
+        <div id="buttons">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="btn-group">
+                            <button type="button" id="ls" class="btn btn-light">작업 디렉터리 파일 조회</button>
+                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <ul class="dropdown-menu">
+                                <li><a id="lsp" class="dropdown-item" href="#">부모 디렉터리 파일 조회</a></li>
+                                <li><a id="lsr" class="dropdown-item" href="#">루트 디렉터리 파일 조회</a></li>
+                                <li><a id="lsa" class="dropdown-item" href="#">자세한 작업 디렉터리 파일 조회</a></li>
+                            </ul>
+                        </td>
+                        <td class="btn-group">
+                            <button type="button" id="cd" class="btn btn-light" style="margin-left: 10px">작업 디렉터리 이동</button>
+                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <ul class="dropdown-menu">
+                                <li><a id="cdr" class="dropdown-item" href="#">루트 디렉터리 이동</a></li>
+                                <li><a id="cdh" class="dropdown-item" href="#">홈 디렉터리 이동</a></li>
+                                <li><a id="cdp" class="dropdown-item" href="#">부모 디렉터리 이동</a></li>
+                            </ul>
+                        </td>
+                        <td class="btn-group">
+                            <button type="button" id="mv" class="btn btn-light" style="margin-left: 10px">파일 이름 바꾸기</button>
+                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="mvf" href="#">파일 이동시키기</a></li>
+                                <li><a class="dropdown-item" id="mva" href="#">파일 여러개 이동시키기</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <script>
@@ -131,7 +143,7 @@
 
             function handleKeyPress(event) {
                 if (event.keyCode === 13) {
-                    event.preventDefault(); // 기본 Enter 키 동작 방지
+                    event.preventDefault();
                     const command = document.getElementById('command').value;
 
                     socket.emit('ssh-command', command);
@@ -164,6 +176,7 @@
             document.getElementById('lsp').onclick = () => {
                 socket.emit('ssh-command', "ls ../");
             }
+
             document.getElementById('lsr').onclick = () => {
                 socket.emit('ssh-command', "ls /");
             }
@@ -171,6 +184,35 @@
             document.getElementById('lsa').onclick = () => {
                 socket.emit('ssh-command', "ls -al");
             }
+
+            document.getElementById('cd').onclick = () => {
+                document.getElementById('command').value = 'cd [이동할 디렉터리로 수정]';
+            }
+
+            document.getElementById('cdr').onclick = () => {
+                socket.emit('ssh-command', "cd /");
+            }
+
+            document.getElementById('cdh').onclick = () => {
+                socket.emit('ssh-command', "cd");
+            }
+
+            document.getElementById('cdp').onclick = () => {
+                socket.emit('ssh-command', "cd ..");
+            }
+
+            document.getElementById('mv').onclick = () => {
+                document.getElementById('command').value = 'mv [원본 파일 이름] [바꿀 파일 이름]';
+            }
+
+            document.getElementById('mvf').onclick = () => {
+                document.getElementById('command').value = 'mv [파일 이름] [디렉터리 이름]';
+            }
+
+            document.getElementById('mva').onclick = () => {
+                document.getElementById('command').value = 'mv [파일 이름] [파일 이름] [디렉터리 이름]';
+            }
+
 
             socket.on('ssh-ready', () => {
                 document.getElementById('console').value += 'SSH Connection Ready\n';
