@@ -63,6 +63,13 @@
                 box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
                 padding-left: 0.5vw;
             }
+            .modal{
+                position: fixed;
+                top: 25vh;
+                left: 35vw;
+                width: 30vw;
+                height: 50vh;
+            }
         </style>
     </head>
     <body>
@@ -102,7 +109,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="background: white">
-                        <table class="table">
+                        <table class="table" style="margin: 0;">
                             <tbody>
                             <tr>
                                 <td>
@@ -128,16 +135,16 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button id="connect" style="width: 15vw" class="btn btn-dark" data-bs-dismiss="modal">Connect</button>
+                        <button id="connect" style="width: 5vw" class="btn btn-dark" data-bs-dismiss="modal">Connect</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="terminal">
+        <div id="terminal" style="margin-top:10vh;">
             <h1><b>Terminal</b></h1>
-            <label for="console"></label><textarea id="console" readonly class="shadow-lg" style="width: 50vw; height: 50vh;"></textarea><br>
-            <label for="command"></label><input id="command" class="input-form shadow-lg" type="text" style="width: 45vw; height: 4vh" onkeydown="handleKeyPress(event)">
+            <label for="console"></label><textarea id="console" readonly class="shadow" style="width: 50vw; height: 50vh;"></textarea><br>
+            <label for="command"></label><input id="command" class="input-form shadow" type="text" style="width: 45vw; height: 4vh" onkeydown="handleKeyPress(event)">
             <button id="send" class="btn btn-light shadow-lg" style="height: 4vh; width: 5vw;">Send</button>
         </div>
 
@@ -146,8 +153,8 @@
                 <tbody>
                     <tr>
                         <td class="btn-group">
-                            <button type="button" id="ls" class="btn btn-light">작업 디렉터리 파일 조회</button>
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="ls" class="btn btn-outline-dark shadow">작업 디렉터리 파일 조회</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a id="lsp" class="dropdown-item" href="#">부모 디렉터리 파일 조회</a></li>
                                 <li><a id="lsr" class="dropdown-item" href="#">루트 디렉터리 파일 조회</a></li>
@@ -155,8 +162,8 @@
                             </ul>
                         </td>
                         <td class="btn-group">
-                            <button type="button" id="cd" class="btn btn-light">작업 디렉터리 이동</button>
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="cd" class="btn btn-outline-dark shadow">작업 디렉터리 이동</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a id="cdr" class="dropdown-item" href="#">루트 디렉터리 이동</a></li>
                                 <li><a id="cdh" class="dropdown-item" href="#">홈 디렉터리 이동</a></li>
@@ -164,8 +171,8 @@
                             </ul>
                         </td>
                         <td class="btn-group">
-                            <button type="button" id="mv" class="btn btn-light">파일 이름 바꾸기</button>
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="mv" class="btn btn-outline-dark shadow">파일 이름 바꾸기</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" id="mvf" href="#">파일 이동시키기</a></li>
                                 <li><a class="dropdown-item" id="mva" href="#">파일 여러개 이동시키기</a></li>
