@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.navbar {
+    min-height: 5vh;
+}
+body {
+    height: 100vh;
+}
+#footer {
+    background-color: #90CFD4;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+#web_console {
+    margin-top: 5vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1vh;
+}
+#ssh_info {
+    text-align: right;
+    margin-bottom: 20px;
+}
+#terminal {
+    text-align: center;
+    margin-bottom: 1vh;
+}
+#terminal textarea {
+    resize: none;
+    background-color: #3B393C;
+    color: white;
+}
+#buttons {
+    display: flex;
+    align-items: center;
+}
+.input-form {
+    background: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    padding-left: 0.5vw;
+}
+.modal{
+    position: fixed;
+    top: 25vh;
+    left: 35vw;
+    width: 30vw;
+    height: 50vh;
+}
+.dropdown-item{
+}
