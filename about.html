@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="about.js"></script>
+
+    <style>
+    .imgv1 {   
+      display : flex;
+      height: 400px;
+      width: 100%;
+      background-size: 100% 100%;
+      /* 이미지 크기를 컨테이너 크기에 맞게 조정 */
+      background-position: center;
+      /* 이미지를 가운데로 설정 */
+      margin: 0px;
+      padding: 0;
+      opacity: 1;
+    }
+    .image-segment{
+      margin: 0;
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+ 
+
+
+.image-caption{
+  position: absolute;
+  top: 0;
+  left: 0%;
+  bottom: 0;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: left 0.2s ease;
+  display: none;
+}
+
+/*    
+.imgv1:hover, .imgv1.highlight {
+      opacity: 1;
+    } */
+    </style>
+
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div style="height: 30vh;"> </div>
+  <div class="dAbout">
+    <div class="divA1">
+      <p class="dA1">About</p>
+    </div>
+    <div class="divA2">
+      <p class="dA2">KNOX is an 무더기 research and deployment company. Our mission is to ensure that artificial general intelligence benefits all of humanity.</p>
+    </div>
+  </div>
+  <div style="height: 25vh;"> </div>
+  
+<div>
+  <img class="imgSlider" src="img/OTL.png" alt="">
+</div>
+
+  <div>
+    <h1 class="aboutT"style="text-align: center;">Who are we?</h1>
+  <div class="row" style="margin:0;">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 row no-gutters image-container">
+      <div class="col-sm-4 image-segment">
+        <img class="imgv1"id="image-frame1" src="img/3.jpg" alt="">
+        <div class="image-caption" id = "image-caption1" >
+          <p>
+            "Hi My name is <strong>Jeon-Tom.</strong>"
+            <br>
+            "I creat About page"
+            "부연설명."
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 image-segment">
+        <img class="imgv1"id="image-frame2" src="img/2.jpg" alt="">
+        <div class="image-caption" id = "image-caption2">
+          <p>
+            "Hi My name is <strong>윤석현.</strong>"
+            <br>
+            "I creat Home page"
+            "부연설명"
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 image-segment">
+        <img class="imgv1" id="image-frame3" src="img/1.jpg" alt="">
+        <div class="image-caption" id = "image-caption3">
+          <p>
+            "Hi My name is <strong>조민우.</strong>"
+            <br>
+            "I creat Console/Answer page"
+            "부연설명"
+          </p>
+        </div>
+        
+      </div>
+      
+    <div class="col-sm-3"></div>
+  </div>
+</div>
+      <br>   
+      <h1 class="aboutT"style="text-align: center; position: relative;" >How To Visit?</h1>
+      
+      <div class="row" style="margin:0;">      
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+      <div id="map" style="max-width:100% ; height: 500px "></div>
+      <div class="address">
+        <h4>CBNU-TUX</h4>
+        <p><strong>충북 청주시 서원구 충대로1 충북대학교 전자정보대학 소프트웨어학부 S4-1동(전자정보 3관) 108호</strong>
+        <br>
+        <b>TEL :</b>
+        "010 - 1234 - 4321"
+        
+        <b>Email :</b>
+        "qwer123@email.com"
+        </p>
+      </div>
+  
+      <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=351haoy203&callback=initMap"></script>
+<script>
+function initMap() {
+  const cbnuLocation = new naver.maps.LatLng(36.62563026275683, 127.4544004838527);
+  const map = new naver.maps.Map("map", {
+    center: cbnuLocation,
+    zoom: 16
+  });
+  
+  const marker = new naver.maps.Marker({
+    position: cbnuLocation,
+    map: map
+  });
+
+
+  const contentString = "<div style='width:150px;'>" +
+    "<div style='float:left;'>" +
+    "<a href='https://map.kakao.com/?urlX=601621.0&urlY=868907.0&itemId=1236538181&q=%EC%B6%A9%EB%B6%81%EB%8C%80%ED%95%99%EA%B5%90%20%EC%A0%84%EC%9E%90%EC%A0%95%EB%B3%B4%EB%8C%80%ED%95%993%EA%B4%80&srcid=1236538181&map_type=TYPE_MAP&from=roughmap' target='_blank'>충북대학교 소프트웨어학과</a></div></div>";
+ 
+
+  const infowindow = new naver.maps.InfoWindow({
+     content: contentString,
+    backgroundColor: "#fff",   // 말풍선 컬러를 흰색으로 변경합니다.
+    borderColor: "#ccc",       // 말풍선 테두리 색상을 변경합니다.
+    borderWidth: 1,            // 말풍선 테두리 두께를 1px으로 변경합니다.
+ 
+    anchorSize: new naver.maps.Size(0, 0),
+    anchorSkew: true,
+    pixelOffset: new naver.maps.Point(0,-10),
+    disableAnchor: true 
+    
+  });
+
+  naver.maps.Event.addListener(marker, "click", function() {
+    infowindow.open(map, marker);
+  });
+  //infowindow.open(map, marker);
+}
+</script>
+     
+ 
+</body>
+</html>
