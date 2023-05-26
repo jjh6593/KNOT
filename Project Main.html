@@ -35,64 +35,66 @@
             </div>
         </div>
     </nav>
-    <div id="home">
+    <div id="main_article">
 
-    </div>
-    <div id="web_console">
-        <div id="ssh_info" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">SSH 로그인</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" style="background: white">
-                        <table class="table" style="margin: 0;">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <label>Host: <input id="host" class="input-form" style="width: 15vw" type="text"></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Port: <input id="port" class="input-form" style="width: 15vw" type="text"></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Username: <input id="username" class="input-form" style="width: 15vw" type="text"></label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Password: <input id="password" class="input-form" style="width: 15vw" type="password"></label>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="connect" style="width: 5vw" class="btn btn-dark" data-bs-dismiss="modal">Connect</button>
+        <div id="home">
+
+        </div>
+        <div id="web_console">
+            <div id="ssh_info" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="true" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">SSH 로그인</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="background: white">
+                            <table class="table" style="margin: 0;">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <label>Host: <input id="host" class="input-form" style="width: 15vw" type="text"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Port: <input id="port" class="input-form" style="width: 15vw" type="text"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Username: <input id="username" class="input-form" style="width: 15vw" type="text"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Password: <input id="password" class="input-form" style="width: 15vw" type="password"></label>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="connect" style="width: 5vw" class="btn btn-dark" data-bs-dismiss="modal">Connect</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="terminal" style="margin-top:10vh;">
-            <h1><b>Terminal</b></h1>
-            <label for="console"></label><textarea id="console" readonly class="shadow" style="width: 50vw; height: 50vh;"></textarea><br>
-            <label for="command"></label><input id="command" class="input-form shadow" type="text" style="width: 45vw; height: 4vh" onkeydown="handleKeyPress(event)">
-            <button id="send" class="btn btn-outline-dark shadow-lg" style="height: 4vh; width: 5vw;">Send</button>
-        </div>
+            <div id="terminal" style="margin-top:10vh;">
+                <h1><b>Terminal</b></h1>
+                <label for="console"></label><textarea id="console" readonly class="shadow-sm" style="width: 50vw; height: 50vh;"></textarea><br>
+                <label for="command"></label><input id="command" class="input-form shadow-sm" type="text" style="width: 45vw; height: 4vh" onkeydown="handleKeyPress(event)">
+                <button id="send" class="btn btn-outline-dark shadow-sm" style="height: 4vh; width: 5vw;">Send</button>
+            </div>
 
-        <div id="buttons">
-            <table class="table table-borderless">
-                <tbody>
+            <div id="buttons">
+                <table class="table table-borderless">
+                    <tbody>
                     <tr>
                         <td class="btn-group">
-                            <button type="button" id="ls" class="btn btn-outline-dark shadow">작업 디렉터리 파일 조회</button>
-                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="ls" class="btn btn-outline-dark shadow-sm">작업 디렉터리 파일 조회</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a id="lsp" class="dropdown-item" href="#">부모 디렉터리 파일 조회</a></li>
                                 <li><a id="lsr" class="dropdown-item" href="#">루트 디렉터리 파일 조회</a></li>
@@ -100,8 +102,8 @@
                             </ul>
                         </td>
                         <td class="btn-group">
-                            <button type="button" id="cd" class="btn btn-outline-dark shadow">작업 디렉터리 이동</button>
-                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="cd" class="btn btn-outline-dark shadow-sm">작업 디렉터리 이동</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a id="cdr" class="dropdown-item" href="#">루트 디렉터리 이동</a></li>
                                 <li><a id="cdh" class="dropdown-item" href="#">홈 디렉터리 이동</a></li>
@@ -109,34 +111,240 @@
                             </ul>
                         </td>
                         <td class="btn-group">
-                            <button type="button" id="mv" class="btn btn-outline-dark shadow">파일 이름 바꾸기</button>
-                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
+                            <button type="button" id="mv" class="btn btn-outline-dark shadow-sm">파일 이름 바꾸기</button>
+                            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split shadow-sm" data-bs-toggle="dropdown" aria-expanded="false"><span class="visually-hidden">dropdown</span></button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" id="mvf" href="#">파일 이동시키기</a></li>
                                 <li><a class="dropdown-item" id="mva" href="#">파일 여러개 이동시키기</a></li>
                             </ul>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <script src="javascript/console.js"></script>
         </div>
+        <div id="reference">
+            <div id="ref_table">
+                <table class="table table-hover real_table">
+                    <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Commands</th>
+                        <th scope="col">Info</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>ls</td>
+                        <td>현재 작업 디렉토리에 있는 파일 표시</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>ls -al</td>
+                        <td>숨김 파일을 포함한 모든 파일 표시</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>cd <i>dir</i></td>
+                        <td><i>dir</i>위치로 작업 디렉토리를 이동</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>cd</td>
+                        <td>홈 디렉토리로 작업 디렉토리를 이동</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>pwd</td>
+                        <td>현재 작업 디렉토리 위치 표시</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>mkdir <i>dir</i></td>
+                        <td><i>dir</i> 디렉토리 파일 생성</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>rm <i>file</i></td>
+                        <td><i>file</i> 삭제</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>rm -r <i>dir</i></td>
+                        <td><i>dir</i> 디렉터리와 그 내용물 삭제</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>rm -f <i>file</i></td>
+                        <td><i>file</i> 을 강제로 삭제</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>rm -rf <i>dir</i></td>
+                        <td><i>dir</i> 을 강제로 삭제</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>cp <i>file1</i> <i>file2</i></td>
+                        <td><i>file1</i> 을 <i>file2</i> 로 복사</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>cp -r <i>dir1</i> <i>dir2</i></td>
+                        <td><i>dir1</i>과 그 내용물을 <i>dir2</i>로 복사</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>mv <i>file1</i> <i>file2</i></td>
+                        <td><i>file1</i> 을 <i>file2</i> 로 이동</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>ln -s <i>file</i> <i>link</i></td>
+                        <td><i>file</i> 의 심볼릭 링크를 <i>link</i> 로 생성</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>touch <i>file</i></td>
+                        <td><i>file</i> 을 생성 혹은 업데이트</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">16</th>
+                        <td>cat > <i>file</i></td>
+                        <td><i>file</i> 에 표준 입력을 기록</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">17</th>
+                        <td>more <i>file</i></td>
+                        <td><i>file</i> 의 내용을 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">18</th>
+                        <td>head <i>file</i></td>
+                        <td><i>file</i> 의 첫 10줄을 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">19</th>
+                        <td>tail <i>file</i></td>
+                        <td><i>file</i> 의 끝 10줄을 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">20</th>
+                        <td>tail -f <i>file</i></td>
+                        <td><i>file</i> 의 지속적으로 업데이트 되는 끝 10줄을 출력</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover real_table">
+                    <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Commands</th>
+                        <th scope="col">Info</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-light">
+                        <td colspan="3" align="center"><b>프로세스</b></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">21</th>
+                        <td>ps</td>
+                        <td>현재 실행중인 자신의 프로세스 목록 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">22</th>
+                        <td>ps -ef</td>
+                        <td>현재 실행중인 모든 프로세스 목록 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">23</th>
+                        <td>kill <i>pid</i></td>
+                        <td><i>pid</i> 에 해당하는 프로세스 종료 시도</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">24</th>
+                        <td>kill -9 <i>pid</i></td>
+                        <td><i>pid</i> 에 해당하는 프로세스 강제 종료</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">25</th>
+                        <td>killall <i>proc</i></td>
+                        <td><i>proc</i> 에 해당하는 모든 프로세스 종료</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">26</th>
+                        <td>bg</td>
+                        <td>모든 정지된, 혹은 백그라운드 프로세스 출력</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">27</th>
+                        <td>fg</td>
+                        <td>가장 최근 작업을 포그라운드로 변경</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">28</th>
+                        <td>fg <i>n</i></td>
+                        <td><i>n</i> 번째 작업을 포그라운드로 변경</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td colspan="3" align="center"><b>파일 권한</b></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">29</th>
+                        <td>chmod <i>octal</i> <i>file</i></td>
+                        <td><i>file</i> 의 권한을 <i>octal</i>로 설정 </td>
+                    </tr>
+                    <tr class="table-light">
+                        <td colspan="3" align="center"><b>검색</b></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">30</th>
+                        <td>grep <i>pattern</i> <i>files</i></td>
+                        <td><i>files</i> 에서 <i>pattern</i> 을 검색</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">31</th>
+                        <td>grep -r <i>pattern</i> <i>files</i></td>
+                        <td><i>files</i> 에서 <i>pattern</i> 을 재귀적으로 검색</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">32</th>
+                        <td><i>command</i> | grep <i>pattern</i></td>
+                        <td><i>command</i>의 출력에서 <i>pattern</i> 검색</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td colspan="3" align="center"><b>압축</b></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">33</th>
+                        <td>tar cf <i>files.tar</i> <i>files</i></td>
+                        <td><i>files</i> 을 <i>files.tar</i> 로 묶어서 저장</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">34</th>
+                        <td>tar xf <i>files.tar</i></td>
+                        <td><i>files.tar</i> 로 묶인 파일 해제</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">35</th>
+                        <td>tar czf <i>files.tar.gz</i> <i>files</i></td>
+                        <td><i>files</i> 을 <i>files.tar.gz</i> 로 gzip 포맷 압축하여 저장</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">36</th>
+                        <td>tar xzf <i>files.tar.gz</i></td>
+                        <td><i>files.tar.gz</i> 로 압축된 파일 해제</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="about">
 
-        <script src="javascript/console.js"></script>
-    </div>
-    <div id="reference" style="margin-top:5vh">
-        <h1>
-            이곳은 SSH 환경에서 구동 가능한 리눅스 명령어들을 표시해주는 레퍼런스입니다.
-        </h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div id="about">
-
+        </div>
     </div>
     <div id="footer">
         Team Nice Penguin

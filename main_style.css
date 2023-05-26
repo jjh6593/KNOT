@@ -17,7 +17,6 @@ body {
     height: 10vh;
 }
 #web_console {
-    margin-top: 5vh;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -37,6 +36,12 @@ body {
     resize: none;
     background-color: #3B393C;
     color: white;
+}
+#main_article {
+    margin-left: 12.5vw;
+    margin-right: 12.5vw;
+    margin-top: 5vh;
+    width: 75vw;
 }
 #buttons {
     display: flex;
@@ -60,4 +65,19 @@ body {
     height: 50vh;
 }
 .dropdown-item{
+}
+#reference{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+#ref_table{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.real_table{
+    width: 50%;
+    margin: 0;
 }
