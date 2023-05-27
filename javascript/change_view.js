@@ -27,5 +27,5 @@ function show_about() {
     home.style.display = "none";
     web_console.style.display = "none";
     reference.style.display = "none";
-    about.style.display = "flex";
+    about.style.display = "block";
 }

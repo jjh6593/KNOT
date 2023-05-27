@@ -81,3 +81,105 @@ body {
     width: 50%;
     margin: 0;
 }
+
+.dAbout {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    display: flex;
+    color: #833600;
+    text-align: left;
+}
+
+.divA1{
+    margin-top: -1%;
+    margin-left: 1%;
+    width: 49vw;
+    display:inline-block;
+    font-size: 70px
+}
+.divA2{
+    right: -0.5%;
+    width: 49vw;
+    display:inline-block;
+    font-size: 30px ;
+}
+
+.map img {
+    display: block;
+    margin: 0 auto;
+}
+
+.image-segment{
+    width: 33%;
+    padding: 0;
+    position: relative;
+}
+
+.imgSlider{
+    display: flex;
+    width: 100%;
+    height: 75vh;
+    padding: 2.5% 1%;
+    background-color: #333;
+}
+
+.aboutT{
+    font-size: 36px;
+    color: #333;
+    font-weight: 500;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-bottom: 1px solid #ccc;
+}
+.address h4{
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.address p{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    border: 10px solid #f8f9fa;
+    padding: 10px 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    font-weight: 300;
+    line-height: 2em;
+    text-align: center;
+}
+
+
+.imgv1 {
+    display : flex;
+    width: 100%;
+    background-size: 100% 100%;
+    background-position: center;
+    padding: 0;
+    opacity: 1;
+}
+
+.image-segment{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.image-caption{
+    position: absolute;
+    top: 33%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 33%;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: left 0.2s ease;
+    display: none;
+}
