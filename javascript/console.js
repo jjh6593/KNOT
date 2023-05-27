@@ -18,7 +18,6 @@ document.getElementById('connect').onclick = () => {
     const port = document.getElementById('port').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     socket.emit('ssh-connect', {host, port, username, password});
 };
 
