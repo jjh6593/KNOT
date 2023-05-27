@@ -171,11 +171,11 @@ body {
 
 .image-caption{
     position: absolute;
-    top: 33%;
+    top: 0;
     left: 0;
     bottom: 0;
-    width: 100%;
-    height: 33%;
+    width: 60%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     color: #fff;
     padding: 10px;

@@ -28,4 +28,13 @@ function show_about() {
     web_console.style.display = "none";
     reference.style.display = "none";
     about.style.display = "block";
+
+    initMap();
+    loadMapScript();
+}
+
+function loadMapScript() {
+	const mapScript = document.createElement("script");
+	mapScript.src = "javascript/map_script.js";
+	document.body.appendChild(mapScript);
 }
